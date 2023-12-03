@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  mongo:
+    image: bitnami/mongodb:latest
+    container_name: mongo
+    ports:
+      - 27030:27017
+    volumes:
+      - mongodata:/bitnami/mongodb
+    environment:
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=root
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_ADVERTISED_HOSTNAME=mongo
+      - MONGODB_REPLICA_SET_KEY=ThisIsAUniqueKeyThatShouldBeChanged123
+
+volumes:
+  mongodata:
+    driver: local
+
+# const mongoURL = 'mongodb://root:root@127.0.0.1:27030/transactions?authSource=admin&directConnection=true';
